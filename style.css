@@ -40,6 +40,7 @@ body {
     width: 600px; /* Adjusted width */
     height: 600px; /* Adjusted height */
     background-color: green;
+    overflow: hidden; /* Hide any overflow caused by hexagonal grid */
 }
 
 /* Hexagonal grid layout */
@@ -47,9 +48,11 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 100px); /* 5 columns */
     grid-template-rows: repeat(5, 100px); /* 5 rows */
-    gap: 0; /* No gap between the hexagons */
+    gap: 0;
     position: relative;
     transform: rotate(30deg); /* Rotate the grid for a hexagonal effect */
+    width: 100%;
+    height: 100%;
 }
 
 /* Hexagonal button */
