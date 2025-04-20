@@ -4,75 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Button Grid</title>
-    <style>
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(6, 100px);
-            grid-template-rows: repeat(5, 100px);
-            gap: 10px;
-        }
-        .button {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .green {
-            background-color: green;
-        }
-        .orange {
-            background-color: orange;
-        }
-        .default {
-            background-color: white;
-            border: 2px solid #000;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="grid">
-    <!-- Buttons will be generated here by JavaScript -->
-</div>
+    <div class="container">
+        <button id="shuffleButton" class="shuffle-button">Shuffle Letters</button>
+        <div class="grid" id="grid">
+            <!-- Buttons will be generated here by JavaScript -->
+        </div>
+    </div>
 
-<script>
-    // Array of characters (use the characters from your image here)
-    const letters = [
-        'ب', 'د', 'و', 'ص', 'ق', 'ث',
-        'ه', 'ض', 'ظ', 'ح', 'ي', 'م',
-        'ز', 'ط', 'ك', 'أ', 'ش', 'ر',
-        'س', 'ظ', 'ج', 'ع', 'غ', 'ذ'
-    ];
+    <script>
+        // Array of characters (use the characters from your image here)
+        const letters = [
+            'ب', 'د', 'و', 'ص', 'ق', 'ث',
+            'ه', 'ض', 'ظ', 'ح', 'ي', 'م',
+            'ز', 'ط', 'ك', 'أ', 'ش', 'ر',
+            'س', 'ظ', 'ج', 'ع', 'غ', 'ذ'
+        ];
 
-    const gridContainer = document.querySelector('.grid');
+        const gridContainer = document.getElementById('grid');
+        const shuffleButton = document.getElementById('shuffleButton');
 
-    // Create grid buttons
-    letters.forEach(letter => {
-        const button = document.createElement('div');
-        button.classList.add('button', 'default');
-        button.textContent = letter;
-        button.addEventListener('click', () => toggleButton(button));
-        gridContainer.appendChild(button);
-    });
-
-    // Function to toggle button colors
-    function toggleButton(button) {
-        if (button.classList.contains('default')) {
-            button.classList.remove('default');
-            button.classList.add('green');
-        } else if (button.classList.contains('green')) {
-            button.classList.remove('green');
-            button.classList.add('orange');
-        } else if (button.classList.contains('orange')) {
-            button.classList.remove('orange');
-            button.classList.add('default');
+        // Function to create the grid
+        function createGrid(lettersArray) {
+            gridContainer.innerHTML = ''; // Clear previous grid
+            lettersArray.forEach(letter => {
+                const button = document.createElement('div');
+                button.classList.add('button', 'default');
+                button.textContent = letter;
+                button.addEventListener('click', () => toggleButton(button));
+                gridContainer.appendChild(button);
+            });
         }
-    }
-</script>
+
+        // Function to toggle button colors
+        function toggleButton(button) {
+            if (button.classList.contains('default')) {
+                button.classList.remove('default');
+                button.classList.add('green');
+            } else if (button.classList.contains('green')) {
+                button.classList.remove('green');
+                button.classList.add('orange');
+            } else if (button.classList.contains('orange')) {
+                button.classList.remove('orange');
+                button.classList.add('default');
+            }
+        }
+
+        // Function to shuffle the letters array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        // Event listener for shuffle button
+        shuffleButton.addEventListener('click', () => {
+            shuffleArray(letters);
+            createGrid(letters); // Recreate the grid with shuffled letters
+        });
+
+        // Initialize grid
+        createGrid(letters);
+
+    </script>
 
 </body>
 </html>
