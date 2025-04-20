@@ -31,19 +31,31 @@ body {
     background-color: #45a049;
 }
 
-/* Grid layout */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(6, 100px);
-    grid-template-rows: repeat(5, 100px);
-    gap: 10px;
+/* Grid container for center positioning */
+.grid-container {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: green;
 }
 
-/* Styling individual buttons */
-.button {
+/* Hexagonal grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hexagonal button */
+.hex {
     width: 100px;
     height: 100px;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,6 +63,7 @@ body {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     user-select: none;
 }
 
@@ -70,4 +83,36 @@ body {
 .orange {
     background-color: #FF9800;
     color: white;
+}
+
+/* Edge colors */
+.grid-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: green;
+}
+
+.grid-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: green;
+}
+
+.grid-container .row::before,
+.grid-container .row::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background-color: orange;
 }
