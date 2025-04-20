@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Button Grid</title>
+    <title>Interactive Hexagonal Button Grid</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         <button id="shuffleButton" class="shuffle-button">Shuffle Letters</button>
-        <div class="grid" id="grid">
-            <!-- Buttons will be generated here by JavaScript -->
+        <div class="grid-container">
+            <div class="grid" id="grid">
+                <!-- Buttons will be generated here by JavaScript -->
+            </div>
         </div>
     </div>
 
     <script>
         // Array of characters (use the characters from your image here)
         const letters = [
-            'ب', 'د', 'و', 'ص', 'ق', 'ث',
-            'ه', 'ض', 'ظ', 'ح', 'ي', 'م',
-            'ز', 'ط', 'ك', 'أ', 'ش', 'ر',
-            'س', 'ظ', 'ج', 'ع', 'غ', 'ذ'
+            'ب', 'د', 'و', 'ص', 'ق',
+            'ث', 'ه', 'ض', 'ظ', 'ح',
+            'ي', 'م', 'ز', 'ط', 'ك',
+            'أ', 'ش', 'ر', 'س', 'ظ',
+            'ج', 'ع', 'غ', 'ذ', 'ف'
         ];
 
         const gridContainer = document.getElementById('grid');
@@ -30,13 +33,20 @@
         // Function to create the grid
         function createGrid(lettersArray) {
             gridContainer.innerHTML = ''; // Clear previous grid
-            lettersArray.forEach(letter => {
-                const button = document.createElement('div');
-                button.classList.add('button', 'default');
-                button.textContent = letter;
-                button.addEventListener('click', () => toggleButton(button));
-                gridContainer.appendChild(button);
-            });
+            let index = 0;
+
+            for (let i = 0; i < 5; i++) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+                for (let j = 0; j < 5; j++) {
+                    const button = document.createElement('div');
+                    button.classList.add('button', 'default', 'hex');
+                    button.textContent = lettersArray[index++];
+                    button.addEventListener('click', () => toggleButton(button));
+                    row.appendChild(button);
+                }
+                gridContainer.appendChild(row);
+            }
         }
 
         // Function to toggle button colors
