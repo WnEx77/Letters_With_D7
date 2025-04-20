@@ -1,0 +1,73 @@
+/* Overall page layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container holding the grid and the shuffle button */
+.container {
+    text-align: center;
+}
+
+/* Shuffle button */
+.shuffle-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.shuffle-button:hover {
+    background-color: #45a049;
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(5, 100px);
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Styling individual buttons */
+.button {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+/* Default button style */
+.default {
+    background-color: white;
+    border: 2px solid #000;
+}
+
+/* Green button style */
+.green {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Orange button style */
+.orange {
+    background-color: #FF9800;
+    color: white;
+}
