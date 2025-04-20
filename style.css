@@ -37,8 +37,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 600px; /* Adjusted width */
+    height: 600px; /* Adjusted height */
     background-color: green;
 }
 
@@ -48,9 +48,8 @@ body {
     grid-template-columns: repeat(5, 100px); /* 5 columns */
     grid-template-rows: repeat(5, 100px); /* 5 rows */
     gap: 0; /* No gap between the hexagons */
-    width: 100%;
-    height: 100%;
     position: relative;
+    transform: rotate(30deg); /* Rotate the grid for a hexagonal effect */
 }
 
 /* Hexagonal button */
