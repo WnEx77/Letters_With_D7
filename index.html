@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Button Grid</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 100px);
+            grid-template-rows: repeat(5, 100px);
+            gap: 10px;
+        }
+        .button {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .green {
+            background-color: green;
+        }
+        .orange {
+            background-color: orange;
+        }
+        .default {
+            background-color: white;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid">
+    <!-- Buttons will be generated here by JavaScript -->
+</div>
+
+<script>
+    // Array of characters (use the characters from your image here)
+    const letters = [
+        'ب', 'د', 'و', 'ص', 'ق', 'ث',
+        'ه', 'ض', 'ظ', 'ح', 'ي', 'م',
+        'ز', 'ط', 'ك', 'أ', 'ش', 'ر',
+        'س', 'ظ', 'ج', 'ع', 'غ', 'ذ'
+    ];
+
+    const gridContainer = document.querySelector('.grid');
+
+    // Create grid buttons
+    letters.forEach(letter => {
+        const button = document.createElement('div');
+        button.classList.add('button', 'default');
+        button.textContent = letter;
+        button.addEventListener('click', () => toggleButton(button));
+        gridContainer.appendChild(button);
+    });
+
+    // Function to toggle button colors
+    function toggleButton(button) {
+        if (button.classList.contains('default')) {
+            button.classList.remove('default');
+            button.classList.add('green');
+        } else if (button.classList.contains('green')) {
+            button.classList.remove('green');
+            button.classList.add('orange');
+        } else if (button.classList.contains('orange')) {
+            button.classList.remove('orange');
+            button.classList.add('default');
+        }
+    }
+</script>
+
+</body>
+</html>
