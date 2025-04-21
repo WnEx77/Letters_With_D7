@@ -37,8 +37,8 @@ function handleCellClick(event) {
         board[cellIndex].state = 2;
         event.target.style.backgroundColor = "blue";
     } else if (cellState === 2) {
-        board[cellIndex].state = 1;
-        event.target.style.backgroundColor = "red";
+        board[cellIndex].state = 0;  // Reset the cell
+        event.target.style.backgroundColor = "lightgray"; // Reset the color to the default
     }
 }
 
@@ -50,6 +50,7 @@ shuffleBtn.addEventListener("click", shuffleLetters);
 
 // Initialize the board
 initializeBoard();
+
 
 function checkWin() {
     // Check rows (left to right)
