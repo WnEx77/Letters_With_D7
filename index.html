@@ -1,86 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Hexagonal Button Grid</title>
+    <title>Arabic Letter Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="container">
-        <button id="shuffleButton" class="shuffle-button">Shuffle Letters</button>
-        <div class="grid-container">
-            <div class="grid" id="grid">
-                <!-- Buttons will be generated here by JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Array of characters (use the characters from your image here)
-        const letters = [
-            'ب', 'د', 'و', 'ص', 'ق',
-            'ث', 'ه', 'ض', 'ظ', 'ح',
-            'ي', 'م', 'ز', 'ط', 'ك',
-            'أ', 'ش', 'ر', 'س', 'ظ',
-            'ج', 'ع', 'غ', 'ذ', 'ف'
-        ];
-
-        const gridContainer = document.getElementById('grid');
-        const shuffleButton = document.getElementById('shuffleButton');
-
-        // Function to create the grid
-        function createGrid(lettersArray) {
-            gridContainer.innerHTML = ''; // Clear previous grid
-            let index = 0;
-
-            for (let i = 0; i < 5; i++) {
-                const row = document.createElement('div');
-                row.classList.add('row');
-                for (let j = 0; j < 5; j++) {
-                    const button = document.createElement('div');
-                    button.classList.add('button', 'default', 'hex');
-                    button.textContent = lettersArray[index++];
-                    button.addEventListener('click', () => toggleButton(button));
-                    row.appendChild(button);
-                }
-                gridContainer.appendChild(row);
-            }
-        }
-
-        // Function to toggle button colors
-        function toggleButton(button) {
-            if (button.classList.contains('default')) {
-                button.classList.remove('default');
-                button.classList.add('green');
-            } else if (button.classList.contains('green')) {
-                button.classList.remove('green');
-                button.classList.add('orange');
-            } else if (button.classList.contains('orange')) {
-                button.classList.remove('orange');
-                button.classList.add('default');
-            }
-        }
-
-        // Function to shuffle the letters array
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-            }
-        }
-
-        // Event listener for shuffle button
-        shuffleButton.addEventListener('click', () => {
-            shuffleArray(letters);
-            createGrid(letters); // Recreate the grid with shuffled letters
-        });
-
-        // Initialize grid
-        createGrid(letters);
-
-    </script>
-
+    <h1>Arabic Letter Game</h1>
+    <div id="gameBoard" class="game-board"></div>
+    <button id="shuffleBtn">Shuffle Letters</button>
+    <script src="script.js"></script>
 </body>
 </html>
